@@ -16,6 +16,6 @@ router.post("/", controller.registerASubscriber);
 router.patch("/:id", middleware.getSubscriber, controller.updateASubscriber);
 
 // Deleting One subscriber
-router.delete("/:id", middleware.getSubscriber);
+router.delete("/:id", middleware.getSubscriber, controller.deleteASubscriber);
 
 module.exports = router;
