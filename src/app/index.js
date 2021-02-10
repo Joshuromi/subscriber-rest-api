@@ -4,13 +4,13 @@ const mongoose = require("mongoose");
 const app = express();
 app.use(express.json());
 
-mongoose.connect(process.env.DATABASE_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-const db = mongoose.connection;
-db.on("error", (error) => console.error(error));
-db.once("open", () => console.log("Connection to Database successfull"));
+mongoose
+  .connect(process.env.DATABASE_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("Connection to Database successfull"))
+  .catch((err) => console.error("Could not connect to Database", err));
 
 const subscribersRouter = require("../routes/subscribers.route");
 app.use("/subscribers", subscribersRouter);
